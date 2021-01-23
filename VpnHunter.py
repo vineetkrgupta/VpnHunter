@@ -1,8 +1,11 @@
 import glob
 import re
+import os
 import ipinfo
 
 def ip4(ip):
+    if(check(ip) == 0):
+        return -1, "Invalid  Data Inserted"
     f = open("vpn-ipv4.txt","r")
     #print(ip)
     #f=open("a.txt",'r')
@@ -15,7 +18,7 @@ def ip4(ip):
             break
         if str(x) == str(ip):
             #print("found")
-            return 1
+            return (1 , "Found in VPN database")
         t = 0 
         m=0
         ##print(x)
@@ -32,16 +35,40 @@ def ip4(ip):
                    # print(x[:z])
                     if(ip[t+1:] >= x[t+1:z] and ip[t+1:] <= x[z+1:]):
                         #print(x[t+1:z],x[z+1:],ip[t+1:])
-                        return 1 , "Found in VPN database"
+                        return (1 , "Found in VPN database")
                     else:
                         break
                 
             if(x[:z]!= ip[:z]):
                 break
         ##print("............")
-    return 0 , "Not Found in VPN database"
+        
+    d , y = ip4Local(ip)
+    return (d , y)
 
-#print(ip4("2.56.92.29"))            
+
+
+def ip4LocalAdd(ip):
+    
+    f = open("vpn-ipv4Local.txt","a+")
+    f.write(ip)
+    print("%s Added to the ip database"%ip)
+    f.close()
+ 
+    
+    
+def ip4Local(ip):
+    if os.path.exists("vpn-ipv4Local.txt"):
+        f = open("vpn-ipv4Local.txt","r")
+        while True:
+            x = f.readline().rstrip('\n')
+            if not x:
+                break
+            if str(x) == str(ip):
+                return (1 , "Found in Local Custom VPN database")
+    return (0 , "Not Found in Local VPN database")
+    
+            
 
 
 def apnsearch(apn , filex):
@@ -63,6 +90,7 @@ def asn(asp):
     for i in glob.glob("asn/*.txt"):
         if(apnsearch(asp,i) == 1):
             description = "This APN is Malacious  Found In " +(i[len(flocation)+1 : -4]) + " Database"
+            
             return 1 , description
 
 def asnFind(asp):
@@ -86,6 +114,6 @@ def check(Ip):
     # and the string in search() method 
     if(re.search(regex, Ip)):  
         #print(Ip) 
-        return 0
-    else:
         return 1
+    else:
+        return 0
