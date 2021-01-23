@@ -41,7 +41,6 @@ def index():
   return render_template("index.html")
 
 @app.route('/search', methods=['GET', 'POST'])
-@cache.memoize(timeout=cachetime)
 def search():
     query= request.form['search_query']
     print("Query made --> ", query)

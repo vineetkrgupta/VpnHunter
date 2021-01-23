@@ -90,8 +90,9 @@ def asn(asp):
     for i in glob.glob("asn/*.txt"):
         if(apnsearch(asp,i) == 1):
             description = "This APN is Malacious  Found In " +(i[len(flocation)+1 : -4]) + " Database"
-            
             return 1 , description
+    else:
+        return 0 , "IP is Not using VPN"
 
 def asnFind(asp):
     access_token = 'ce25dd1fca9a9b' #9c47a5274b06eb
@@ -118,15 +119,6 @@ def check(Ip):
     else:
         return 0
 
-
-def checkv6(Ip):
-    regex = '''^(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))'''
-    if(re.search(regex, Ip)):  
-        #print(Ip) 
-        return 1
-    else:
-        return 0
-
-p = "2a09:bac0:89"
-print(checkv6(p))
-
+#TODO
+        #Postgress server for  Centralised database 
+        
