@@ -3,25 +3,38 @@
 	  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	  <meta name="viewport" content="width=device-width, initial-scale=1" />
 	  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	  <meta name="author" content="colorlib.com">
+	  <meta name="Team Genesys v1" content="Vpn Hunter ">
 	  <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
+	  <link href="{{ url_for('static', filename='css/footor.css') }}" rel="stylesheet" />
 	  <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet" />
+	  
 	</head>
 	<body>
-	  <div class="s01">
-		<form>
+
+
+	<div class="s01">
+		<form action="/search" method="POST">
+
 		  <fieldset>
 			<legend>VPN HUNTER</legend>
 		  </fieldset>
+
 		  <div class="inner-form">
 			<div class="input-field first-wrap">
-			  <input id="search" type="text" placeholder="Enter ip address" />
+			  <input id="search" type="text" name="search_query" placeholder="Enter ip address" />
 			</div>
 			<div class="input-field third-wrap">
-			  <button class="btn-search" type="button">Search</button>
-			</div>
+				<button class="btn-search" type="submit">Search</button>
+			  </div>
 		  </div>
+
 		</form>
-	  </div>
-	</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
-  </html>
+	</div>
+      	
+
+
+
+</body>
+
+</html>
+
