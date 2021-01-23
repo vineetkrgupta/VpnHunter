@@ -52,6 +52,7 @@ def ip4LocalAdd(ip):
     
     f = open("vpn-ipv4Local.txt","a+")
     f.write(ip)
+    f.write("\n") #adding new line character 
     print("%s Added to the ip database"%ip)
     f.close()
  
