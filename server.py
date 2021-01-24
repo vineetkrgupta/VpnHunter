@@ -7,7 +7,7 @@ import sys
 import VpnHunter
 from flask import jsonify
 cache = Cache()
-cachetime= 600
+cachetime= 0
 
 app = Flask(__name__)
 app.config['CACHE_TYPE'] = 'simple'
@@ -16,23 +16,23 @@ cache.init_app(app)
 
 
 def iphunt(ip_input):
-#  try:
-  res= None
-  #print(ip_input)
-  x ,res = VpnHunter.ip4(ip_input)
-  print(x, res)
-  if(x == 0):
-      print("Doing ASN based Analysis")
-      asn= VpnHunter.asnFind(ip_input)
-      print(asn)
-      x, res = VpnHunter.asn(asn)
-      print(x,res)
-      if(x == 1):
-          VpnHunter.ip4LocalAdd(ip_input)
+  try:
+      res= None
+      #print(ip_input)
+      x ,res = VpnHunter.ip4(ip_input)
+      print(x, res)
+      if(x == 0):
+          print("Doing ASN based Analysis")
+          asn= VpnHunter.asnFind(ip_input)
+          print(asn)
+          x, res = VpnHunter.asn(asn)
+          print(x,res)
+          if(x == 1):
+              VpnHunter.ip4LocalAdd(ip_input)
+          return jsonify(VPN=x, Description=res)
       return jsonify(VPN=x, Description=res)
-  return jsonify(VPN=x, Description=res)
-#  except:
-#      return jsonify(Description="Error occurred" , VPN= -1)
+  except:
+      return jsonify(Description="Error occurred" , VPN= -1)
 
 
 @app.route("/")

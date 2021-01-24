@@ -122,4 +122,8 @@ def check(Ip):
 
 #TODO
         #Postgress server for  Centralised database 
+        #optimise false positives 
+        #recheck from diffrent api 
+        #refine result 
+        
         
