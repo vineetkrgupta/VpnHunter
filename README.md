@@ -1,5 +1,5 @@
 # VpnHunter
-Hashcode 2020 Hackathon  -- Team -- Genesys V1
+Hashcode 2020 Hackathon  -- Team -- Genesys V1 (Always creating 🔥)
 
 ## INTRODUCTION
 
